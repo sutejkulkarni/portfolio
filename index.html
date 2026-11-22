@@ -9,7 +9,7 @@
 <meta property="og:description" content="Flutter and React developer focused on shipping useful, scalable products.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/profile.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230b0f17%22/><text x=%2250%22 y=%2268%22 text-anchor=%22middle%22 font-size=%2258%2２ fill=%2２%234cd7ff%２２ font-family=%２２monospace%２２>S</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%230b0f17%27/%3E%3Ctext x=%2750%27 y=%2768%27 text-anchor=%27middle%27 font-size=%2258%27 fill=%27%234cd7ff%27 font-family=%27monospace%27%3ES%3C/text%3E%3C/svg%3E">
 <title>Sutej Kulkarni — Software Developer</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
@@ -80,7 +80,7 @@ a { color: var(--accent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
 svg { display: block; }
 
-.ide { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-width: 0; }
+.ide { height: 100%; height: 100dvh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-width: 0; }
 
 /* title bar */
 .titlebar { display: flex; align-items: center; gap: 12px; height: 36px; padding-inline: 14px; background: var(--bar); border-bottom: 1px solid var(--line); font: 12px var(--mono); color: var(--muted); }
@@ -115,7 +115,9 @@ svg { display: block; }
 .outline .cs { color: var(--fn); }
 
 /* editor */
-.editor { display: grid; grid-template-rows: auto auto auto minmax(0, 1fr); min-width: 0; min-height: 0; }
+.editor { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.editor > .tabs, .editor > .mobile-nav, .editor > .crumbs { flex: 0 0 auto; }
+.editor > .scroller { flex: 1 1 0; }
 .tabs { display: flex; overflow-x: auto; background: var(--bar); border-bottom: 1px solid var(--line); scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab { padding: 9px 18px; font: 12.5px var(--mono); color: var(--muted); border-right: 1px solid var(--line); border-top: 2px solid transparent; white-space: nowrap; display: flex; gap: 8px; align-items: center; }
@@ -198,7 +200,9 @@ svg { display: block; }
 .proj { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .proj-preview { position: relative; width: 100%; padding-top: 66.67%; border-radius: 6px; overflow: hidden; }
 .proj-placeholder { position: absolute; inset: 0; display: grid; place-items: center; background: var(--line); border-radius: 6px; }
-.proj-placeholder::before { content: "Screenshot"; font: 500 12px var(--mono); color: var(--muted); }
+.proj-placeholder::before { content: attr(data-label); font: 500 12px var(--mono); color: var(--muted); }
+.proj-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
+.proj-preview { border: 1px solid var(--line); }
 .proj-top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
 .proj h3 { margin: 0; font: 500 14px var(--mono); color: var(--fg-strong); overflow-wrap: anywhere; }
 .proj p { margin: 0; flex: 1; }
@@ -276,10 +280,11 @@ svg { display: block; }
 .mobile-nav button { padding: 6px 9px; border-radius: 4px; font: 12px var(--mono); color: var(--muted); white-space: nowrap; }
 .mobile-nav button:hover, .mobile-nav button[aria-current="true"] { background: var(--sel); color: var(--accent); }
 </style>
-
+</head>
+<body>
 <div class="ide" data-side="open">
   <div class="titlebar">
-    <div class="lights" aria-hidden="true"><i></i><i></i><i></div>
+    <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="title"><b>sutej-portfolio</b> · main</div>
     <div class="spacer" aria-hidden="true"></div>
   </div>
@@ -498,23 +503,23 @@ svg { display: block; }
             </div>
             <div class="grid">
               <article class="proj">
-                <div class="proj-preview"><span class="proj-placeholder"></span></div>
+                <div class="proj-preview"><img src="assets/hejje-preview.jpg" alt="Hejje Run Club website hero: &quot;A way of life, any age, any pace.&quot; on an olive green background" width="1000" height="565" loading="lazy"></div>
                 <div class="proj-top"><h3>hejje-run-club</h3><span class="status st-live">v1 live</span></div>
                 <p>Website for a running club, launched in November 2025. Version 2 is a member portal on a serverless AWS stack.</p>
                 <div class="tags"><span class="t">S3</span><span class="t">CloudFront</span><span class="t">API Gateway</span><span class="t">Lambda</span><span class="t">DynamoDB</span><span class="t">SES</span></div>
                 <a class="proj-link" id="lk-hejje" hidden target="_blank" rel="noopener">open site ↗</a>
               </article>
               <article class="proj">
-                <div class="proj-preview"><span class="proj-placeholder"></span></div>
+                <div class="proj-preview"><span class="proj-placeholder" data-label="Live demo coming soon"></span></div>
                 <div class="proj-top"><h3>cabroute-optimizer</h3><span class="status st-wip">in progress</span></div>
                 <p>Full-stack cab route optimization. A MERN app with a Python service that clusters stops with K-Means and sequences routes with OR-Tools over OSRM road distances. Hosting is the next milestone.</p>
                 <div class="tags"><span class="t">MERN</span><span class="t">Python</span><span class="t">OR-Tools</span><span class="t">OSRM</span><span class="t">Docker</span></div>
                 <a class="proj-link" id="lk-cabroute" hidden target="_blank" rel="noopener">open app ↗</a>
               </article>
               <article class="proj">
-                <div class="proj-preview"><span class="proj-placeholder"></span></div>
+                <div class="proj-preview"><img src="assets/museum-preview.jpg" alt="Gita Shatabdi Parva museum walk landing page with the Gita Press logo and a Begin the walk button" width="1000" height="576" loading="lazy"></div>
                 <div class="proj-top"><h3>museum-walk</h3><span class="status st-live">live</span></div>
-                <p>A web walk-through museum built for Ganesh Chaturthi, in plain HTML, CSS and JavaScript, hosted on Netlify.</p>
+                <p>A web walk-through museum built for Ganesh Chaturthi, in lightweight frontend tech-stack, hosted on Netlify.</p>
                 <div class="tags"><span class="t">HTML</span><span class="t">CSS</span><span class="t">JavaScript</span><span class="t">Bootstrap</span></div>
                 <a class="proj-link" id="lk-museum" hidden target="_blank" rel="noopener">open site ↗</a>
               </article>
@@ -541,7 +546,7 @@ svg { display: block; }
             </div>
           </section>
 
-          <div class="foot">// built by hand with HTML, CSS and JavaScript. Based in Bengaluru.</div>
+          <div class="foot">// built by hand with Native frontend Stack. Based in Bengaluru.</div>
         </div>
       </div>
     </section>
@@ -567,7 +572,7 @@ svg { display: block; }
     email: "sutejkulkarni42@gmail.com",
     linkedin: "https://www.linkedin.com/in/sutejkulkarni-4242bw/",
     github: "https://github.com/sutejkulkarni",
-    resume: "",
+    resume: "SutejResume.pdf",
     hejje: "https://thehejjerunclub.com/",
     cabroute: "",
     museum: "https://gita-shatabdi-parva.netlify.app/"
@@ -696,5 +701,5 @@ svg { display: block; }
   }
 })();
 </script>
-
+</body>
 </html>
